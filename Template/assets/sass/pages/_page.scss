@@ -1,0 +1,31 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+.flex-container{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    h1{
+        font-size: 40px;
+    }
+    nav{
+        display: flex;
+        justify-content: space-around;
+        ul{
+            list-style: none;
+            display: flex;
+            // justify-content: space-between;
+            li{
+                margin-left:  25px;
+                font-size: 15px;
+               a:hover{
+                color: #23A6F0;
+               }
+            }
+        }
+    }
+   
+}
+
