@@ -158,14 +158,96 @@ header nav .nav-logo {
 }
 #welcome {
   padding-top: 50px;
+  position: relative;
 }
 #welcome .flex-container {
+  overflow: hidden;
+  min-height: 760px;
   color: rgb(255, 255, 255);
 }
-#welcome .flex-container span {
+#welcome .flex-container .slide {
+  position: absolute;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  transition: 1s;
+  opacity: 0;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+#welcome .flex-container .slide .hero-img {
+  width: 600px;
+  height: 500px;
+  border-radius: 50%;
+}
+#welcome .flex-container .slide.active {
+  opacity: 1;
+}
+#welcome .flex-container .prev, #welcome .flex-container .next {
+  position: absolute;
+  height: 70px;
+  width: 70px;
+  opacity: 0.8;
+  cursor: pointer;
+}
+#welcome .flex-container .prev {
+  top: 50%;
+  left: 0;
+  transform: translateY(-50%);
+}
+#welcome .flex-container .next {
+  top: 50%;
+  right: 0;
+  transform: translateY(-50%);
+}
+#welcome .flex-container .prev::after,
+#welcome .flex-container .next::after {
+  content: "";
+  position: absolute;
+  border: solid white;
+  border-width: 0 4px 4px 0;
+  display: inline-block;
+  padding: 3px;
+  width: 40%;
+  height: 40%;
+}
+#welcome .flex-container .next::after {
+  top: 50%;
+  right: 50%;
+  transform: translate(25%, -50%) rotate(-45deg);
+}
+#welcome .flex-container .prev::after {
+  top: 50%;
+  right: 50%;
+  transform: translate(75%, -50%) rotate(135deg);
+}
+#welcome .flex-container .slider_nav {
+  position: absolute;
+  bottom: 3%;
+  left: 50%;
+  transform: translateX(-50%);
+  text-align: center;
+}
+#welcome .flex-container .slider_nav .slider_navlink {
+  display: inline-block;
+  height: 20px;
+  width: 20px;
+  border-radius: 50%;
+  border: 1px #fff solid;
+  background-color: #333;
+  opacity: 1;
+  margin: 0 10px 0 10px;
+  cursor: pointer;
+}
+#welcome .flex-container .slider_nav .slider_navlink.active {
+  background-color: #fff;
+  border: 1px #333 solid;
+}
+#welcome .flex-container h5 {
   font-size: 16px;
   color: #23a6f0;
-  font-weight: 800;
 }
 #welcome .flex-container h1 {
   font-size: 58px;
@@ -175,9 +257,8 @@ header nav .nav-logo {
 #welcome .flex-container p {
   font-size: 20px;
   vertical-align: top;
-  line-height: 20px;
+  line-height: 30pt;
   margin: 0;
-  margin-top: 20px;
 }
 #welcome .flex-container button {
   padding: 15px 40px 15px 40px;
@@ -318,7 +399,11 @@ header nav .nav-logo {
     width: 430px;
     height: 430px;
   }
-  #welcome .flex-container span {
+  #welcome .flex-container .slide .hero-img {
+    width: 410px;
+    height: 370px;
+  }
+  #welcome .flex-container h5 {
     font-size: 12px;
     color: #23a6f0;
   }
@@ -330,9 +415,8 @@ header nav .nav-logo {
   #welcome .flex-container p {
     font-size: 16px;
     vertical-align: top;
-    line-height: 20px;
+    line-height: 30pt;
     margin: 0;
-    margin-top: 20px;
   }
   #welcome .flex-container button {
     padding: 15px 40px 15px 40px;
@@ -341,15 +425,26 @@ header nav .nav-logo {
   }
 }
 @media screen and (max-width: 990px) {
+  #welcome .flex-container .prev, #welcome .flex-container .next {
+    display: none;
+  }
+  #welcome .flex-container .slide .hero-img {
+    width: 310px;
+    height: 270px;
+  }
+  #welcome .flex-container .slider_nav .slider_navlink {
+    width: 14px;
+    height: 14px;
+  }
   #welcome .flex-container .galaxy {
     display: none;
   }
   #welcome .flex-container .galaxy-img {
     display: block;
-    width: 280px;
-    height: 280px;
+    width: 300px;
+    height: 300px;
   }
-  #welcome .flex-container span {
+  #welcome .flex-container h5 {
     font-size: 6px;
     color: #23a6f0;
   }
@@ -361,9 +456,8 @@ header nav .nav-logo {
   #welcome .flex-container p {
     font-size: 10px;
     vertical-align: top;
-    line-height: 20px;
+    line-height: 30pt;
     margin: 0;
-    margin-top: 20px;
   }
   #welcome .flex-container button {
     padding: 10px 30px 10px 30px;
@@ -372,13 +466,19 @@ header nav .nav-logo {
   }
 }
 @media screen and (max-width: 600px) {
+  #welcome .flex-container {
+    min-height: 500px;
+  }
+  #welcome .flex-container .slide .hero-img {
+    display: none;
+  }
   #welcome .flex-container .galaxy-img {
     display: none;
     width: 330px;
     height: 330px;
     margin-top: 30px;
   }
-  #welcome .flex-container span {
+  #welcome .flex-container h5 {
     font-size: 10px;
     color: #23a6f0;
   }
@@ -390,20 +490,14 @@ header nav .nav-logo {
   #welcome .flex-container p {
     font-size: 8px;
     vertical-align: top;
-    line-height: 20px;
+    line-height: 30pt;
     margin: 0;
-    margin-top: 20px;
   }
   #welcome .flex-container button {
     padding: 10px 30px 10px 30px;
     margin-top: 40px;
     cursor: pointer;
     display: block;
-  }
-  #welcome .flex-container .getbtn {
-    width: 163px;
-    height: 38px;
-    font-size: 11px;
   }
   #welcome .flex-container .learnbtn {
     width: 163px;
@@ -427,66 +521,85 @@ header nav .nav-logo {
 #packages .container .row .summary {
   color: rgb(255, 255, 255);
 }
-#packages .container .row .summary span {
+#packages .container .row .summary h5 {
   font-size: 16px;
   color: #23a6f0;
   width: 300px;
-  font-weight: 800;
 }
 #packages .container .row .summary h2 {
   font-size: 52px;
   margin-top: 7px;
+  height: 50px;
 }
 #packages .container .row .summary p {
   font-size: 17px;
   vertical-align: top;
+  line-height: 24px;
   padding-top: 10px;
   margin-top: 20px;
 }
-#packages .cards-row {
-  display: flex;
-  gap: 35px;
-  margin-top: 45px;
-  justify-content: center;
+#packages .cards {
+  overflow: auto;
+  overflow-x: hidden;
+  scroll-behavior: smooth;
+  scrollbar-width: none;
 }
-#packages .cards-row .card {
+#packages .cards::-webkit-scrollbar {
+  height: 0;
+}
+#packages .cards .cards-row {
+  display: grid;
+  grid-gap: 12px;
+  grid-auto-flow: column;
+  margin: auto;
+  margin-top: 50px;
+}
+#packages .cards .cards-row .card {
   background-color: white;
   width: 230px;
   height: 292px;
   box-shadow: 0px 13px 19px rgba(0, 0, 0, 0.07);
   padding: 35px 40px;
 }
-#packages .cards-row .card .icon-container {
+#packages .cards .cards-row .card .icon-container {
   background-color: #e74040;
   border-radius: 10px;
   width: 70px;
   height: 76px;
   position: relative;
 }
-#packages .cards-row .card .icon-container i {
+#packages .cards .cards-row .card .icon-container i {
   color: white;
   font-size: 30px;
   position: absolute;
   left: 20px;
   top: 20px;
 }
-#packages .cards-row .card h5 {
+#packages .cards .cards-row .card h5 {
   font-size: 16px;
   margin-top: 22px;
 }
-#packages .cards-row .card .line {
+#packages .cards .cards-row .card .line {
   width: 50px;
   height: 2px;
   background-color: #e74040;
   margin-top: 13px;
 }
-#packages .cards-row .card p {
+#packages .cards .cards-row .card p {
   line-height: 20px;
   margin-top: 20px;
   letter-spacing: 0.2px;
 }
-#packages .cards-row .bottom {
+#packages .cards .cards-row .bottom {
   margin-top: 60px;
+}
+#packages i {
+  font-size: 40px;
+  color: white;
+  cursor: pointer;
+}
+#packages .fa-chevron-left {
+  color: gray;
 }
 
 @media screen and (max-width: 1200px) {
@@ -501,7 +614,7 @@ header nav .nav-logo {
   #packages .container .row .summary {
     color: rgb(255, 255, 255);
   }
-  #packages .container .row .summary span {
+  #packages .container .row .summary h5 {
     font-size: 12px;
     color: #23a6f0;
     width: 300px;
@@ -509,56 +622,67 @@ header nav .nav-logo {
   #packages .container .row .summary h2 {
     font-size: 42px;
     margin-top: 7px;
+    height: 40px;
   }
   #packages .container .row .summary p {
     font-size: 10px;
     vertical-align: top;
+    line-height: 24px;
     padding-top: 10px;
-    margin-top: 20px;
   }
-  #packages .cards-row {
-    display: flex;
-    gap: 35px;
-    margin-top: 45px;
-    justify-content: center;
+  #packages .cards {
+    overflow: auto;
+    overflow-x: hidden;
+    scroll-behavior: smooth;
+    scrollbar-width: none;
   }
-  #packages .cards-row .card {
+  #packages .cards::-webkit-scrollbar {
+    height: 0;
+  }
+  #packages .cards .cards-row {
+    display: grid;
+    grid-gap: 12px;
+    grid-auto-flow: column;
+    margin: auto;
+    margin-top: 50px;
+  }
+  #packages .cards .cards-row .card {
     background-color: white;
     width: 190px;
     height: 242px;
     box-shadow: 0px 13px 19px rgba(0, 0, 0, 0.07);
     padding: 35px 40px;
   }
-  #packages .cards-row .card .icon-container {
+  #packages .cards .cards-row .card .icon-container {
     background-color: #e74040;
     border-radius: 10px;
     width: 60px;
     height: 66px;
     position: relative;
   }
-  #packages .cards-row .card .icon-container i {
+  #packages .cards .cards-row .card .icon-container i {
     color: white;
     font-size: 25px;
     position: absolute;
     left: 15px;
     top: 20px;
   }
-  #packages .cards-row .card h5 {
+  #packages .cards .cards-row .card h5 {
     font-size: 12px;
     margin-top: 22px;
   }
-  #packages .cards-row .card .line {
+  #packages .cards .cards-row .card .line {
     width: 40px;
     height: 2px;
     background-color: #e74040;
     margin-top: 13px;
   }
-  #packages .cards-row .card p {
+  #packages .cards .cards-row .card p {
     line-height: 13px;
     margin-top: 10px;
     font-size: 12px;
   }
-  #packages .cards-row .bottom {
+  #packages .cards .cards-row .bottom {
     margin-top: 60px;
   }
 }
@@ -577,7 +701,7 @@ header nav .nav-logo {
     margin: 0 auto;
     max-width: 500px;
   }
-  #packages .container .row .summary span {
+  #packages .container .row .summary h5 {
     font-size: 9px;
     color: #23a6f0;
     width: 280px;
@@ -585,70 +709,84 @@ header nav .nav-logo {
   #packages .container .row .summary h2 {
     font-size: 24px;
     margin-top: 7px;
+    height: 40px;
   }
   #packages .container .row .summary p {
     font-size: 10px;
     vertical-align: top;
-    margin-top: 20px;
-    max-width: 350px;
+    line-height: 24px;
+    padding-top: 25px;
   }
-  #packages .cards-row {
-    display: flex;
-    gap: 35px;
-    margin-top: 45px;
-    justify-content: center;
-    max-width: 593px;
-    flex-wrap: wrap;
+  #packages .cards {
+    overflow: auto;
+    overflow-x: hidden;
+    scroll-behavior: smooth;
+    scrollbar-width: none;
+    max-width: 600px;
     margin: 0 auto;
-    padding-top: 30px;
   }
-  #packages .cards-row .card {
+  #packages .cards::-webkit-scrollbar {
+    height: 0;
+  }
+  #packages .cards .cards-row {
+    display: grid;
+    grid-gap: 12px;
+    grid-auto-flow: column;
+    margin: auto;
+    margin-top: 50px;
+  }
+  #packages .cards .cards-row .card {
     background-color: white;
-    max-width: 190px;
+    max-width: 222px;
     height: 242px;
     box-shadow: 0px 13px 19px rgba(0, 0, 0, 0.07);
     padding: 35px 40px;
   }
-  #packages .cards-row .card .icon-container {
+  #packages .cards .cards-row .card .icon-container {
     background-color: #e74040;
     border-radius: 10px;
     width: 60px;
     height: 66px;
     position: relative;
   }
-  #packages .cards-row .card .icon-container i {
+  #packages .cards .cards-row .card .icon-container i {
     color: white;
     font-size: 25px;
     position: absolute;
     left: 15px;
     top: 20px;
   }
-  #packages .cards-row .card h5 {
+  #packages .cards .cards-row .card h5 {
     font-size: 12px;
     margin-top: 22px;
   }
-  #packages .cards-row .card .line {
+  #packages .cards .cards-row .card .line {
     width: 40px;
     height: 2px;
     background-color: #e74040;
     margin-top: 13px;
   }
-  #packages .cards-row .card p {
+  #packages .cards .cards-row .card p {
     line-height: 13px;
     margin-top: 10px;
     font-size: 12px;
   }
-  #packages .cards-row .bottom {
+  #packages .cards .cards-row .bottom {
     margin-top: 50px;
+  }
+}
+@media screen and (max-width: 626px) {
+  #packages .container .cards {
+    max-width: 282px;
+    margin: 0 auto;
   }
 }
 #online_education {
   text-align: center;
 }
-#online_education span {
+#online_education h5 {
   font-size: 16px;
   color: #23a6f0;
-  font-weight: 800;
 }
 #online_education .summary {
   color: rgb(255, 255, 255);
@@ -662,6 +800,7 @@ header nav .nav-logo {
   font-size: 17px;
   vertical-align: top;
   letter-spacing: 1px;
+  line-height: 24px;
   width: 469px;
   margin: 0 auto;
   padding-top: 10px;
@@ -750,7 +889,7 @@ header nav .nav-logo {
   #online_education {
     text-align: center;
   }
-  #online_education span {
+  #online_education h5 {
     font-size: 16px;
     color: #23a6f0;
   }
@@ -764,9 +903,10 @@ header nav .nav-logo {
   #online_education .summary p {
     font-size: 14px;
     vertical-align: top;
+    line-height: 24px;
     width: 469px;
+    height: 40px;
     margin: 0 auto;
-    margin-top: 20px;
   }
   #online_education .cards-row {
     text-align: left;
@@ -851,7 +991,7 @@ header nav .nav-logo {
   #online_education {
     text-align: center;
   }
-  #online_education span {
+  #online_education h5 {
     font-size: 9px;
     color: #23a6f0;
   }
@@ -865,9 +1005,10 @@ header nav .nav-logo {
   #online_education .summary p {
     font-size: 10px;
     vertical-align: top;
+    line-height: 24px;
     width: 265px;
+    height: 40px;
     margin: 0 auto;
-    margin-top: 20px;
   }
   #online_education .cards-row {
     text-align: left;
@@ -966,10 +1107,10 @@ header nav .nav-logo {
 #watch .summary p {
   font-size: 14px;
   vertical-align: top;
+  line-height: 13pt;
   margin-top: 15px;
   max-width: 469px;
   height: 40px;
-  margin-top: 20px;
 }
 #watch .summary a {
   color: #23a6f0;
@@ -997,6 +1138,7 @@ header nav .nav-logo {
   #watch .summary p {
     font-size: 10px;
     vertical-align: top;
+    line-height: 13pt;
     margin-top: 15px;
     max-width: 469px;
     height: 40px;
@@ -1027,6 +1169,7 @@ header nav .nav-logo {
   #watch .summary p {
     font-size: 13px;
     vertical-align: top;
+    line-height: 13pt;
     margin-top: 15px;
     max-width: 469px;
     height: 40px;
@@ -1044,7 +1187,6 @@ header nav .nav-logo {
   }
   #watch .summary {
     color: rgb(255, 255, 255);
-    max-width: 380px;
   }
   #watch .summary .line {
     width: 50px;
@@ -1059,6 +1201,7 @@ header nav .nav-logo {
   #watch .summary p {
     font-size: 11px;
     vertical-align: top;
+    line-height: 13pt;
     margin-top: 15px;
     max-width: 469px;
     height: 40px;
@@ -1076,11 +1219,10 @@ header nav .nav-logo {
   margin-top: 70px;
   height: 170px;
 }
-#client .row span {
+#client .row h5 {
   font-size: 16px;
   color: #23a6f0;
   margin-top: 25px;
-  font-weight: 800;
 }
 #client .row h2 {
   font-size: 52px;
@@ -1089,6 +1231,7 @@ header nav .nav-logo {
 #client .row p {
   font-size: 14px;
   vertical-align: top;
+  line-height: 24px;
   width: 469px;
   margin: 0 auto;
   margin-top: 20px;
@@ -1144,6 +1287,7 @@ header nav .nav-logo {
   #client .row p {
     font-size: 12px;
     vertical-align: top;
+    line-height: 24px;
     max-width: 469px;
     margin: 0 auto;
     margin-top: 20px;
@@ -1188,7 +1332,7 @@ header nav .nav-logo {
     color: rgb(255, 255, 255);
     margin-top: 70px;
   }
-  #client .row span {
+  #client .row h5 {
     font-size: 10px;
     color: #23a6f0;
     margin-top: 25px;
@@ -1251,7 +1395,7 @@ header nav .nav-logo {
     color: rgb(255, 255, 255);
     margin-top: 70px;
   }
-  #client .row span {
+  #client .row h5 {
     font-size: 9px;
     color: #23a6f0;
     margin-top: 25px;
@@ -1263,6 +1407,7 @@ header nav .nav-logo {
   #client .row p {
     font-size: 9px;
     vertical-align: top;
+    line-height: 24px;
     max-width: 280px;
     margin: 0 auto;
     margin-top: 20px;
@@ -1312,10 +1457,9 @@ header nav .nav-logo {
   text-align: center;
   color: rgb(255, 255, 255);
 }
-#join_us .row span {
+#join_us .row h5 {
   font-size: 16px;
   color: #23a6f0;
-  font-weight: 800;
 }
 #join_us .row h2 {
   font-size: 52px;
@@ -1324,16 +1468,18 @@ header nav .nav-logo {
 #join_us .row p {
   font-size: 14px;
   vertical-align: top;
+  line-height: 24px;
+  margin-top: 10px;
   max-width: 469px;
   height: 40px;
   margin: 0 auto;
-  margin-top: 20px;
 }
 #join_us input {
   width: 600px;
   height: 60px;
   padding-left: 30px;
   border-radius: 35px;
+  border: none;
 }
 #join_us .form-row {
   margin-top: 30px;
@@ -1377,7 +1523,7 @@ header nav .nav-logo {
     text-align: center;
     color: rgb(255, 255, 255);
   }
-  #join_us .row span {
+  #join_us .row h5 {
     font-size: 12px;
     color: #23a6f0;
   }
@@ -1388,10 +1534,11 @@ header nav .nav-logo {
   #join_us .row p {
     font-size: 12px;
     vertical-align: top;
+    line-height: 24px;
+    margin-top: 10px;
     max-width: 469px;
     height: 40px;
     margin: 0 auto;
-    margin-top: 20px;
   }
   #join_us input {
     width: 500px;
@@ -1440,7 +1587,7 @@ header nav .nav-logo {
     text-align: center;
     color: rgb(255, 255, 255);
   }
-  #join_us .row span {
+  #join_us .row h5 {
     font-size: 11px;
     color: #23a6f0;
   }
@@ -1451,10 +1598,11 @@ header nav .nav-logo {
   #join_us .row p {
     font-size: 10px;
     vertical-align: top;
+    line-height: 24px;
+    margin-top: 10px;
     max-width: 469px;
     height: 40px;
     margin: 0 auto;
-    margin-top: 20px;
   }
   #join_us input {
     width: 400px;
@@ -1503,7 +1651,7 @@ header nav .nav-logo {
     text-align: center;
     color: rgb(255, 255, 255);
   }
-  #join_us .row span {
+  #join_us .row h5 {
     font-size: 9px;
     color: #23a6f0;
   }
@@ -1515,10 +1663,10 @@ header nav .nav-logo {
     font-size: 9px;
     vertical-align: top;
     line-height: 24px;
+    margin-top: 10px;
     max-width: 379px;
     height: 40px;
     margin: 0 auto;
-    margin-top: 20px;
   }
   #join_us input {
     width: 280px;
@@ -1607,7 +1755,8 @@ footer .flex-container .social-media i {
   footer .flex-container a:hover {
     color: #23a6f0;
   }
-  footer .flex-container a, footer .flex-container p {
+  footer .flex-container a,
+footer .flex-container p {
     font-size: 10px;
   }
   footer .flex-container h3 {
@@ -1646,8 +1795,9 @@ footer .flex-container .social-media i {
   footer .flex-container a:hover {
     color: #23a6f0;
   }
-  footer .flex-container a, footer .flex-container p {
-    font-size: 15px;
+  footer .flex-container a,
+footer .flex-container p {
+    font-size: 18px;
   }
   footer .flex-container h3 {
     margin-bottom: 10px;

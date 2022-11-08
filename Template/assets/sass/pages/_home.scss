@@ -91,7 +91,15 @@ header {
     }
   }
 }
+// @media screen and(max-width: 929px) and(min-width: 895px) {
+//   header {
+//     .container {
+//       nav {
 
+//       }
+//     }
+//   }
+// }
 @media screen and(max-width: 895px) {
   header {
     nav {
@@ -148,12 +156,101 @@ header {
 
 #welcome {
   padding-top: 50px;
+  position: relative;
+
   .flex-container {
+    overflow: hidden;
+    min-height: 760px;
+  
+    .slide {
+      position: absolute;
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+      transition: 1s;
+      opacity: 0;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      .hero-img{
+        width: 600px;
+        height: 500px;
+        border-radius: 50%;
+      }
+    }
+    .slide.active {
+      opacity: 1;
+    }
+    .prev,.next{
+      position: absolute;
+      height: 70px;
+      width: 70px;
+      opacity: .8;
+      cursor: pointer;
+    }
+    .prev {
+      top: 50%;
+      left: 0;
+      transform: translateY(-50%);
+    }
+  
+  .next {
+      top: 50%;
+      right: 0;
+      transform: translateY(-50%);
+  }
+  
+  .prev::after,
+  .next::after {
+      content: "";
+      position: absolute;
+      border: solid white;
+      border-width: 0 4px 4px 0;
+      display: inline-block;
+      padding: 3px;
+      width: 40%;
+      height: 40%;
+  }
+  
+  .next::after{
+      top: 50%;
+      right: 50%;
+      transform: translate(25%, -50%) rotate(-45deg);
+  }
+  
+  .prev::after {
+      top: 50%;
+      right: 50%;
+      transform: translate(75%, -50%) rotate(135deg);
+  }
+  
+    .slider_nav {
+      position: absolute;
+      bottom: 3%;
+      left: 50%;
+      transform: translateX(-50%);
+      text-align: center;
+      .slider_navlink {
+        display: inline-block;
+        height: 20px;
+        width: 20px;
+        border-radius: 50%;
+        border: 1px #fff solid;
+        background-color: #333;
+        opacity: 1;
+        margin: 0 10px 0 10px;
+        cursor: pointer;
+      }
+      .slider_navlink.active {
+        background-color: #fff;
+        border: 1px #333 solid;
+      }
+    }
     color: $text-color;
-    span {
+    h5 {
       font-size: 16px;
       color: $main-blue;
-      font-weight: 800
     }
     h1 {
       font-size: 58px;
@@ -163,10 +260,8 @@ header {
     p {
       font-size: 20px;
       vertical-align: top;
-      line-height: 20px;
+      line-height: 30pt;
       margin: 0;
-      margin-top: 20px;
-
     }
     button {
       padding: 15px 40px 15px 40px;
@@ -307,12 +402,20 @@ header {
       .galaxy {
         display: none;
       }
+
       .galaxy-img {
         display: block;
         width: 430px;
         height: 430px;
       }
-      span {
+      .slide{
+        .hero-img{
+          width: 410px;
+          height: 370px;
+        }
+      }
+     
+      h5 {
         font-size: 12px;
         color: $main-blue;
       }
@@ -324,10 +427,8 @@ header {
       p {
         font-size: 16px;
         vertical-align: top;
-        line-height: 20px;
+        line-height: 30pt;
         margin: 0;
-        margin-top: 20px;
-
       }
       button {
         padding: 15px 40px 15px 40px;
@@ -340,15 +441,31 @@ header {
 @media screen and(max-width: 990px) {
   #welcome {
     .flex-container {
+      .prev,.next{
+        display:none;
+      }
+      .slide{
+        .hero-img{
+          width: 310px;
+          height: 270px;
+        }
+      }
+      .slider_nav{
+        .slider_navlink{
+          width: 14px;
+          height: 14px;
+        }
+      }
+     
       .galaxy {
         display: none;
       }
       .galaxy-img {
         display: block;
-        width: 280px;
-        height: 280px;
+        width: 300px;
+        height: 300px;
       }
-      span {
+      h5 {
         font-size: 6px;
         color: $main-blue;
       }
@@ -360,10 +477,8 @@ header {
       p {
         font-size: 10px;
         vertical-align: top;
-        line-height: 20px;
+        line-height: 30pt;
         margin: 0;
-        margin-top: 20px;
-
       }
       button {
         padding: 10px 30px 10px 30px;
@@ -376,13 +491,19 @@ header {
 @media screen and(max-width: 600px) {
   #welcome {
     .flex-container {
+      min-height: 500px;
+      .slide{
+        .hero-img{
+          display: none;
+        }
+      }
       .galaxy-img {
         display: none;
         width: 330px;
         height: 330px;
         margin-top: 30px;
       }
-      span {
+      h5 {
         font-size: 10px;
         color: $main-blue;
       }
@@ -394,10 +515,8 @@ header {
       p {
         font-size: 8px;
         vertical-align: top;
-        line-height: 20px;
+        line-height: 30pt;
         margin: 0;
-        margin-top: 20px;
-
       }
       button {
         padding: 10px 30px 10px 30px;
@@ -405,12 +524,7 @@ header {
         cursor: pointer;
         display: block;
       }
-      .getbtn{
-        width: 163px;
-        height: 38px;
-        font-size: 11px;
-      }
-      .learnbtn{
+      .learnbtn {
         width: 163px;
       }
     }
@@ -437,73 +551,95 @@ header {
       align-items: flex-start;
       .summary {
         color: $text-color;
-        
-        span {
+
+        h5 {
           font-size: 16px;
           color: $main-blue;
           width: 300px;
-          font-weight: 800;
         }
 
         h2 {
           font-size: 52px;
           margin-top: 7px;
+          height: 50px;
         }
 
         p {
           font-size: 17px;
           vertical-align: top;
+          line-height: 24px;
           padding-top: 10px;
           margin-top: 20px;
         }
       }
     }
   }
+  .cards {
+    overflow: auto;
+    overflow-x: hidden;
+    scroll-behavior: smooth;
+    scrollbar-width: none;
+    &::-webkit-scrollbar {
+      height: 0;
+    }
+    .cards-row {
+      display: grid;
+      grid-gap: 12px;
+      grid-auto-flow: column;
+      margin: auto;
+      margin-top: 50px;
 
-  .cards-row {
-    display: flex;
-    gap: 35px;
-    margin-top: 45px;
-    justify-content: center;
-    .card {
-      background-color: white;
-      width: 230px;
-      height: 292px;
-      box-shadow: 0px 13px 19px rgba(0, 0, 0, 0.07);
-      padding: 35px 40px;
-      .icon-container {
-        background-color: $line-color;
-        border-radius: 10px;
-        width: 70px;
-        height: 76px;
-        position: relative;
-        i {
-          color: white;
-          font-size: 30px;
-          position: absolute;
-          left: 20px;
-          top: 20px;
+      // overflow-x: hidden;
+
+      .card {
+        background-color: white;
+        width: 230px;
+        height: 292px;
+        box-shadow: 0px 13px 19px rgba(0, 0, 0, 0.07);
+        padding: 35px 40px;
+        .icon-container {
+          background-color: $line-color;
+          border-radius: 10px;
+          width: 70px;
+          height: 76px;
+          position: relative;
+          i {
+            color: white;
+            font-size: 30px;
+            position: absolute;
+            left: 20px;
+            top: 20px;
+          }
+        }
+        h5 {
+          font-size: 16px;
+          margin-top: 22px;
+        }
+        .line {
+          width: 50px;
+          height: 2px;
+          background-color: $line-color;
+          margin-top: 13px;
+        }
+        p {
+          line-height: 20px;
+          margin-top: 20px;
+          letter-spacing: 0.2px;
         }
       }
-      h5 {
-        font-size: 16px;
-        margin-top: 22px;
-      }
-      .line {
-        width: 50px;
-        height: 2px;
-        background-color: $line-color;
-        margin-top: 13px;
-      }
-      p {
-        line-height: 20px;
-        margin-top: 20px;
-        letter-spacing: 0.2px;
+      .bottom {
+        margin-top: 60px;
       }
     }
-    .bottom {
-      margin-top: 60px;
-    }
+  }
+
+  i {
+    font-size: 40px;
+    color: white;
+    cursor: pointer;
+  }
+  .fa-chevron-left {
+    color: gray;
   }
 }
 
@@ -517,7 +653,7 @@ header {
         align-items: center;
         .summary {
           color: $text-color;
-          span {
+          h5 {
             font-size: 12px;
             color: $main-blue;
             width: 300px;
@@ -526,62 +662,74 @@ header {
           h2 {
             font-size: 42px;
             margin-top: 7px;
+            // width: 700px;
+            height: 40px;
           }
 
           p {
             font-size: 10px;
             vertical-align: top;
+            line-height: 24px;
+            // width: 469px;
             padding-top: 10px;
-            margin-top: 20px;
-
           }
         }
       }
     }
+    .cards {
+      overflow: auto;
+      overflow-x: hidden;
+      scroll-behavior: smooth;
+      scrollbar-width: none;
+      &::-webkit-scrollbar {
+        height: 0;
+      }
+      .cards-row {
+        display: grid;
+        grid-gap: 12px;
+        grid-auto-flow: column;
+        margin: auto;
+        margin-top: 50px;
 
-    .cards-row {
-      display: flex;
-      gap: 35px;
-      margin-top: 45px;
-      justify-content: center;
-      .card {
-        background-color: white;
-        width: 190px;
-        height: 242px;
-        box-shadow: 0px 13px 19px rgba(0, 0, 0, 0.07);
-        padding: 35px 40px;
-        .icon-container {
-          background-color: $line-color;
-          border-radius: 10px;
-          width: 60px;
-          height: 66px;
-          position: relative;
-          i {
-            color: white;
-            font-size: 25px;
-            position: absolute;
-            left: 15px;
-            top: 20px;
+        .card {
+          background-color: white;
+          width: 190px;
+          height: 242px;
+          box-shadow: 0px 13px 19px rgba(0, 0, 0, 0.07);
+          padding: 35px 40px;
+          .icon-container {
+            background-color: $line-color;
+            border-radius: 10px;
+            width: 60px;
+            height: 66px;
+            position: relative;
+            i {
+              color: white;
+              font-size: 25px;
+              position: absolute;
+              left: 15px;
+              top: 20px;
+            }
+          }
+          h5 {
+            font-size: 12px;
+            margin-top: 22px;
+          }
+          .line {
+            width: 40px;
+            height: 2px;
+            background-color: $line-color;
+            margin-top: 13px;
+          }
+          p {
+            line-height: 13px;
+            margin-top: 10px;
+            font-size: 12px;
           }
         }
-        h5 {
-          font-size: 12px;
-          margin-top: 22px;
+        .bottom {
+          margin-top: 60px;
         }
-        .line {
-          width: 40px;
-          height: 2px;
-          background-color: $line-color;
-          margin-top: 13px;
-        }
-        p {
-          line-height: 13px;
-          margin-top: 10px;
-          font-size: 12px;
-        }
-      }
-      .bottom {
-        margin-top: 60px;
       }
     }
   }
@@ -600,7 +748,7 @@ header {
           color: $text-color;
           margin: 0 auto;
           max-width: 500px;
-          span {
+          h5 {
             font-size: 9px;
             color: $main-blue;
             width: 280px;
@@ -609,65 +757,87 @@ header {
           h2 {
             font-size: 24px;
             margin-top: 7px;
+            // width: 700px;
+            height: 40px;
           }
 
           p {
             font-size: 10px;
             vertical-align: top;
-            margin-top: 20px;
-            max-width: 350px;
+            line-height: 24px;
+            // width: 469px;
+            padding-top: 25px;
           }
         }
       }
     }
-
-    .cards-row {
-      display: flex;
-      gap: 35px;
-      margin-top: 45px;
-      justify-content: center;
-      max-width: 593px;
-      flex-wrap: wrap;
+    .cards {
+      overflow: auto;
+      overflow-x: hidden;
+      scroll-behavior: smooth;
+      scrollbar-width: none;
+      max-width: 600px;
       margin: 0 auto;
-      padding-top: 30px;
-      .card {
-        background-color: white;
-        max-width: 190px;
-        height: 242px;
-        box-shadow: 0px 13px 19px rgba(0, 0, 0, 0.07);
-        padding: 35px 40px;
-        .icon-container {
-          background-color: $line-color;
-          border-radius: 10px;
-          width: 60px;
-          height: 66px;
-          position: relative;
-          i {
-            color: white;
-            font-size: 25px;
-            position: absolute;
-            left: 15px;
-            top: 20px;
+      &::-webkit-scrollbar {
+        height: 0;
+      }
+      .cards-row {
+        display: grid;
+        grid-gap: 12px;
+        grid-auto-flow: column;
+        margin: auto;
+        margin-top: 50px;
+
+        .card {
+          background-color: white;
+          max-width: 222px;
+          height: 242px;
+          box-shadow: 0px 13px 19px rgba(0, 0, 0, 0.07);
+          padding: 35px 40px;
+          .icon-container {
+            background-color: $line-color;
+            border-radius: 10px;
+            width: 60px;
+            height: 66px;
+            position: relative;
+            i {
+              color: white;
+              font-size: 25px;
+              position: absolute;
+              left: 15px;
+              top: 20px;
+            }
+          }
+          h5 {
+            font-size: 12px;
+            margin-top: 22px;
+          }
+          .line {
+            width: 40px;
+            height: 2px;
+            background-color: $line-color;
+            margin-top: 13px;
+          }
+          p {
+            line-height: 13px;
+            margin-top: 10px;
+            font-size: 12px;
           }
         }
-        h5 {
-          font-size: 12px;
-          margin-top: 22px;
-        }
-        .line {
-          width: 40px;
-          height: 2px;
-          background-color: $line-color;
-          margin-top: 13px;
-        }
-        p {
-          line-height: 13px;
-          margin-top: 10px;
-          font-size: 12px;
+        .bottom {
+          margin-top: 50px;
         }
       }
-      .bottom {
-        margin-top: 50px;
+    }
+  }
+}
+
+@media screen and(max-width: 626px) {
+  #packages {
+    .container {
+      .cards {
+        max-width: 282px;
+        margin: 0 auto;
       }
     }
   }
@@ -675,10 +845,9 @@ header {
 
 #online_education {
   text-align: center;
-  span {
+  h5 {
     font-size: 16px;
     color: $main-blue;
-    font-weight: 800;
   }
 
   .summary {
@@ -692,6 +861,7 @@ header {
       font-size: 17px;
       vertical-align: top;
       letter-spacing: 1px;
+      line-height: 24px;
       width: 469px;
       margin: 0 auto;
       padding-top: 10px;
@@ -705,7 +875,7 @@ header {
     justify-content: center;
     margin-top: 50px;
     gap: 30px;
-    
+
     .card {
       position: relative;
       background-color: white;
@@ -723,7 +893,7 @@ header {
       img {
         width: 238px;
       }
-  
+
       .main {
         padding: 25px 25px 35px;
         h3 {
@@ -783,14 +953,14 @@ header {
 @media screen and(max-width: 1200px) {
   #online_education {
     text-align: center;
-    span {
+    h5 {
       font-size: 16px;
       color: $main-blue;
     }
-  
+
     .summary {
       color: $text-color;
-  
+
       h2 {
         font-size: 52px;
         margin-top: 7px;
@@ -798,10 +968,10 @@ header {
       p {
         font-size: 14px;
         vertical-align: top;
+        line-height: 24px;
         width: 469px;
+        height: 40px;
         margin: 0 auto;
-        margin-top: 20px;
-
       }
     }
     .cards-row {
@@ -829,7 +999,7 @@ header {
         img {
           width: 450px;
         }
-    
+
         .main {
           padding: 25px 25px 35px;
           h3 {
@@ -888,14 +1058,14 @@ header {
 @media screen and(max-width: 950px) {
   #online_education {
     text-align: center;
-    span {
+    h5 {
       font-size: 9px;
       color: $main-blue;
     }
-  
+
     .summary {
       color: $text-color;
-  
+
       h2 {
         font-size: 24px;
         margin-top: 7px;
@@ -903,10 +1073,10 @@ header {
       p {
         font-size: 10px;
         vertical-align: top;
+        line-height: 24px;
         width: 265px;
+        height: 40px;
         margin: 0 auto;
-        margin-top: 20px;
-
       }
     }
     .cards-row {
@@ -934,7 +1104,7 @@ header {
         img {
           max-width: 245px;
         }
-    
+
         .main {
           padding: 25px 25px 35px;
           h3 {
@@ -1009,24 +1179,22 @@ header {
     p {
       font-size: 14px;
       vertical-align: top;
+      line-height: 13pt;
       margin-top: 15px;
       max-width: 469px;
       height: 40px;
-      margin-top: 20px;
-
     }
     a {
       color: $main-blue;
       margin-top: 30px;
-
     }
   }
 }
 
 @media screen and(max-width: 1200px) {
   #watch {
-    .section-image{
-      img{
+    .section-image {
+      img {
         max-width: 300px;
         height: 290px;
       }
@@ -1046,6 +1214,7 @@ header {
       p {
         font-size: 10px;
         vertical-align: top;
+        line-height: 13pt;
         margin-top: 15px;
         max-width: 469px;
         height: 40px;
@@ -1054,7 +1223,6 @@ header {
         color: $main-blue;
         margin-top: 30px;
         font-size: 10px;
-
       }
     }
   }
@@ -1062,9 +1230,8 @@ header {
 
 @media screen and(max-width: 790px) {
   #watch {
-    .section-image{
+    .section-image {
       display: none;
-   
     }
     .summary {
       color: $text-color;
@@ -1081,6 +1248,7 @@ header {
       p {
         font-size: 13px;
         vertical-align: top;
+        line-height: 13pt;
         margin-top: 15px;
         max-width: 469px;
         height: 40px;
@@ -1090,20 +1258,17 @@ header {
         margin-top: 30px;
         font-size: 13px;
         margin-top: 30px;
-
       }
     }
   }
 }
 @media screen and(max-width: 500px) {
   #watch {
-    .section-image{
+    .section-image {
       display: none;
-     
     }
     .summary {
       color: $text-color;
-      max-width: 380px;
       .line {
         width: 50px;
         height: 6px;
@@ -1117,6 +1282,7 @@ header {
       p {
         font-size: 11px;
         vertical-align: top;
+        line-height: 13pt;
         margin-top: 15px;
         max-width: 469px;
         height: 40px;
@@ -1126,7 +1292,6 @@ header {
         margin-top: 30px;
         font-size: 11px;
         margin-top: 30px;
-
       }
     }
   }
@@ -1138,11 +1303,10 @@ header {
     color: $text-color;
     margin-top: 70px;
     height: 170px;
-    span {
+    h5 {
       font-size: 16px;
       color: $main-blue;
       margin-top: 25px;
-      font-weight: 800;
     }
     h2 {
       font-size: 52px;
@@ -1151,6 +1315,7 @@ header {
     p {
       font-size: 14px;
       vertical-align: top;
+      line-height: 24px;
       width: 469px;
       margin: 0 auto;
       margin-top: 20px;
@@ -1162,7 +1327,7 @@ header {
     padding-top: 50px;
     // max-width: 593px;
     //   flex-wrap: wrap;
-      margin: 0 auto;
+    margin: 0 auto;
     .card {
       width: 501px;
       height: 378px;
@@ -1187,7 +1352,6 @@ header {
       .comment {
         color: black;
         margin-top: 10px;
-
       }
     }
   }
@@ -1211,10 +1375,10 @@ header {
       p {
         font-size: 12px;
         vertical-align: top;
+        line-height: 24px;
         max-width: 469px;
         margin: 0 auto;
         margin-top: 20px;
-
       }
     }
     .row-card {
@@ -1258,7 +1422,7 @@ header {
       text-align: center;
       color: $text-color;
       margin-top: 70px;
-      span {
+      h5 {
         font-size: 10px;
         color: $main-blue;
         margin-top: 25px;
@@ -1274,7 +1438,6 @@ header {
         max-width: 469px;
         margin: 0 auto;
         margin-top: 20px;
-
       }
     }
     .row-card {
@@ -1306,7 +1469,7 @@ header {
         }
         .stars {
           margin-top: 20px;
-          img{
+          img {
             width: 17px;
             height: 17px;
           }
@@ -1324,7 +1487,7 @@ header {
       text-align: center;
       color: $text-color;
       margin-top: 70px;
-      span {
+      h5 {
         font-size: 9px;
         color: $main-blue;
         margin-top: 25px;
@@ -1336,10 +1499,10 @@ header {
       p {
         font-size: 9px;
         vertical-align: top;
+        line-height: 24px;
         max-width: 280px;
         margin: 0 auto;
         margin-top: 20px;
-
       }
     }
     .row-card {
@@ -1371,7 +1534,7 @@ header {
         }
         .stars {
           margin-top: 15px;
-          img{
+          img {
             width: 10px;
             height: 10px;
           }
@@ -1384,16 +1547,14 @@ header {
   }
 }
 
-
 #join_us {
   .row {
     margin-top: 40px;
     text-align: center;
     color: $text-color;
-    span {
+    h5 {
       font-size: 16px;
       color: $main-blue;
-      font-weight: 800;
     }
     h2 {
       font-size: 52px;
@@ -1402,11 +1563,11 @@ header {
     p {
       font-size: 14px;
       vertical-align: top;
+      line-height: 24px;
+      margin-top: 10px;
       max-width: 469px;
       height: 40px;
       margin: 0 auto;
-      margin-top: 20px;
-
     }
   }
   input {
@@ -1414,6 +1575,7 @@ header {
     height: 60px;
     padding-left: 30px;
     border-radius: 35px;
+    border: none;
   }
   .form-row {
     margin-top: 30px;
@@ -1458,7 +1620,7 @@ header {
       margin-top: 40px;
       text-align: center;
       color: $text-color;
-      span {
+      h5 {
         font-size: 12px;
         color: $main-blue;
       }
@@ -1469,11 +1631,11 @@ header {
       p {
         font-size: 12px;
         vertical-align: top;
+        line-height: 24px;
+        margin-top: 10px;
         max-width: 469px;
         height: 40px;
         margin: 0 auto;
-        margin-top: 20px;
-
       }
     }
     input {
@@ -1524,7 +1686,7 @@ header {
       margin-top: 40px;
       text-align: center;
       color: $text-color;
-      span {
+      h5 {
         font-size: 11px;
         color: $main-blue;
       }
@@ -1535,11 +1697,11 @@ header {
       p {
         font-size: 10px;
         vertical-align: top;
+        line-height: 24px;
+        margin-top: 10px;
         max-width: 469px;
         height: 40px;
         margin: 0 auto;
-        margin-top: 20px;
-
       }
     }
     input {
@@ -1590,7 +1752,7 @@ header {
       margin-top: 40px;
       text-align: center;
       color: $text-color;
-      span {
+      h5 {
         font-size: 9px;
         color: $main-blue;
       }
@@ -1602,11 +1764,10 @@ header {
         font-size: 9px;
         vertical-align: top;
         line-height: 24px;
+        margin-top: 10px;
         max-width: 379px;
         height: 40px;
         margin: 0 auto;
-        margin-top: 20px;
-
       }
     }
     input {
@@ -1695,12 +1856,11 @@ footer {
         &:hover {
           color: $main-blue;
         }
-       
       }
-      a,p{
+      a,
+      p {
         font-size: 10px;
-
-        }
+      }
       h3 {
         margin-bottom: 10px;
         font-size: 16px;
@@ -1723,7 +1883,7 @@ footer {
       padding: 80px 70px;
       flex-direction: column;
       align-items: baseline;
-      div{
+      div {
         margin-top: 25px;
       }
       i {
@@ -1736,12 +1896,11 @@ footer {
         &:hover {
           color: $main-blue;
         }
-       
       }
-      a,p{
-        font-size: 15px;
-
-        }
+      a,
+      p {
+        font-size: 18px;
+      }
       h3 {
         margin-bottom: 10px;
         font-size: 21px;
