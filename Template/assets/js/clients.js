@@ -84,31 +84,22 @@ prevBtn.addEventListener('click',function () {
 
 
 
-let p=fetch('https://jsonplaceholder.typicode.com/comments')
-.then(response => response.json())
-.then(comment => renderComments(comment));
-// console.log(p);
-
-async function getApi(url) {
-    
-    // Storing response
-    const response = await fetch(url);
-    
-    // Storing data in form of JSON
-    var data = await response.json();
+async function getApi() { 
+   try{
+    const res=await fetch('https://jsonplaceholder.typicode.com/comments');
+    const data=await res.json();
     console.log(data);
-    // if (response) {
-    //     hideloader();
-    // }
-    show(data);
+    return data.splice(10,15);
+   }
+   catch(error){
+    console.log(error);
+   }
 }
-getApi(p);
+getApi();
 
-function renderComments(comment) {
-    comment.forEach(data => {
-        const div = document.createElement('div');
-        div.textContent = post.title;
-            postsContainer.appendChild(li);
+async function renderComments() {
+    let comments= await getApi();
+    comments.forEach(data => {
         let testm=` <div class="card">
         <img src="${testimonials[i].imageSrc}" alt="testimonial">
         <p class="comment">${data.body}</p>
@@ -123,6 +114,7 @@ function renderComments(comment) {
         <p>${data.name}</p>
         </div>
         `;
-        testimonialContainer.innerHTML+=testm;
+        testimonialContainer.innerHTML=testm;
     });
 }
+renderComments();
