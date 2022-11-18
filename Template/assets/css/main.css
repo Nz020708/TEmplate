@@ -1215,16 +1215,6 @@ header nav .nav-logo {
     margin-top: 30px;
   }
 }
-#client {
-  width: 100%;
-}
-#client .wrap {
-  position: relative;
-  width: 100%;
-  max-width: 1020px;
-  padding: 40px 20px;
-  margin: auto;
-}
 #client .arrow {
   display: block;
   position: absolute;
@@ -1244,40 +1234,10 @@ header nav .nav-logo {
   border: 1px solid white;
 }
 #client .arrow.left {
-  left: 15px;
+  left: -10px;
 }
 #client .arrow.right {
-  right: 15px;
-}
-#client .dots {
-  text-align: center;
-  position: absolute;
-  width: 100%;
-  bottom: 60px;
-  left: 0;
-  display: block;
-  z-index: 3333;
-  height: 12px;
-}
-#client .dots .dot {
-  list-style-type: none;
-  display: inline-block;
-  width: 12px;
-  height: 12px;
-  border-radius: 50%;
-  border: 1px solid green;
-  margin: 0 10px;
-  cursor: pointer;
-  transition: all 0.5s ease-in-out;
-  position: relative;
-}
-#client .dots .dot.active, #client .dots .dot:hover {
-  background: green;
-  border-color: green;
-}
-#client .dots .dot.active {
-  -webkit-animation: testim-scale 0.5s ease-in-out forwards;
-  animation: testim-scale 0.5s ease-in-out forwards;
+  right: -10px;
 }
 #client .row {
   text-align: center;
@@ -1306,14 +1266,15 @@ header nav .nav-logo {
   display: flex;
   justify-content: center;
   padding-top: 50px;
-  margin: 0 auto;
 }
 #client .row-card .card {
-  height: 378px;
+  width: 590px;
+  min-height: 378px;
   padding: 25px;
   background-color: white;
   margin: 10px;
   text-align: center;
+  box-sizing: content-box;
 }
 #client .row-card .card img {
   border-radius: 50%;
@@ -1367,7 +1328,7 @@ header nav .nav-logo {
   }
   #client .row-card .card {
     max-width: 501px;
-    height: 378px;
+    min-height: 378px;
     padding: 25px;
     background-color: white;
     margin: 10px;
@@ -1424,7 +1385,7 @@ header nav .nav-logo {
   }
   #client .row-card .card {
     max-width: 401px;
-    height: 278px;
+    min-height: 278px;
     padding: 25px;
     background-color: white;
     margin: 10px;
@@ -1487,7 +1448,7 @@ header nav .nav-logo {
   }
   #client .row-card .card {
     max-width: 255px;
-    height: 180px;
+    min-height: 180px;
     padding: 25px;
     background-color: white;
     margin: 10px;
